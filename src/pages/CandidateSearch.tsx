@@ -142,14 +142,19 @@ const CandidateSearch = () => {
     <div className="container mt-4">
       <h1 className="text-center mb-4">Candidate Search</h1>
 
-      <form onSubmit={handleSearch} className="mb-4">
-        <input
-          type="text"
-          placeholder="Enter GitHub Username"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
-        <button type="submit">Search</button>
+      <form onSubmit={handleSearch} className="form-container">
+        <div className="input-group">
+          <input
+            type="text"
+            placeholder="Enter GitHub Username"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            className="search-input"
+          />
+          <button type="submit" className="search-button">
+            Search
+          </button>
+        </div>
       </form>
 
       {error && <p className="error">{error}</p>}

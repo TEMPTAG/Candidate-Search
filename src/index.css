@@ -34,7 +34,7 @@ body {
   background-position: center center;
   margin: 0;
   place-items: center;
-  min-width: 320px;
+  /* min-width: 320px; */
   min-height: 100vh;
 }
 
@@ -95,10 +95,27 @@ tbody tr:nth-child(odd) {
   background-color: #333333;
 }
 
+form {
+  width: 20rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav {
+  width: 100vw;
+  padding: 10px 40px;
+  margin-left: 50px;
+  position: relative;
+}
+
 .nav {
   display: flex;
   justify-content: flex-start;
-  padding: 1em 2em;
+  padding: 0;
+  margin: 0 auto;
+  align-items: center;
 }
 
 .nav-item {
@@ -120,4 +137,36 @@ table {
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 2px;
+}
+
+.input-group {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #000000;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  font-size: 1rem;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #000000;
+  color: white;
+  border: 2px solid #000000;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #cacaca;
 }
