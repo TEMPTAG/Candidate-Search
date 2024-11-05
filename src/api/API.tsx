@@ -13,7 +13,7 @@ const searchGithub = async () => {
     // console.log('Response:', response);
     const data = await response.json();
     if (!response.ok) {
-      throw new Error('invalid API response, check the network tab');
+      throw new Error("invalid API response, check the network tab");
     }
     // console.log('Data:', data);
     return data;
@@ -32,7 +32,7 @@ const searchGithubUser = async (username: string) => {
     });
     const data = await response.json();
     if (!response.ok) {
-      throw new Error('invalid API response, check the network tab');
+      throw new Error("invalid API response, check the network tab");
     }
     return data;
   } catch (err) {

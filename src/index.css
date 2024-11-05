@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
-  font-family: 'Inter Tight', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Inter Tight", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -55,7 +55,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #cacaca;
 }
 button:focus,
 button:focus-visible {
@@ -68,7 +68,7 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #cacaca;
   }
   button {
     background-color: #f9f9f9;
@@ -88,6 +88,7 @@ tr {
   border-radius: 10px;
   background-color: #000;
   color: white;
+  overflow-wrap: break-word;
 }
 
 tbody tr:nth-child(odd) {
@@ -114,7 +115,9 @@ tbody tr:nth-child(odd) {
   font-weight: 700;
 }
 
-.table {
+table {
   width: 80vw;
   table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 2px;
 }
