@@ -3,10 +3,19 @@ import type Candidate from "../interfaces/Candidate.interface";
 import { BsDashCircleFill } from "react-icons/bs";
 
 const SavedCandidates = () => {
+  // State to hold saved candidates from local storage
   const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([]);
+
+  // State to hold the filtered list of candidates (after applying filter/sort)
   const [filteredCandidates, setFilteredCandidates] = useState<Candidate[]>([]);
+
+  // State to track the filter input value (for filtering by name or location)
   const [filter, setFilter] = useState<string>("");
+
+  // State to track the selected sorting criteria (e.g., name, location)
   const [sortCriteria, setSortCriteria] = useState<string>("name");
+
+  // State to track the sorting order (ascending or descending)
   const [sortOrder, setSortOrder] = useState<string>("asc");
 
   // Retrieve saved candidates from local storage on component load
