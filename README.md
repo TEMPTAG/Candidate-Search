@@ -2,6 +2,8 @@
 
 # Candidate Search
 
+[Visit the Deployed Application](https://candidate-search-sabd.onrender.com/)
+
 ## React and Typescript Project
 
 ![GitHub License](https://img.shields.io/github/license/TEMPTAG/Candidate-Search?label=License)
@@ -10,7 +12,7 @@
 
 Candidate Search is a web application that interacts with the GitHub API to search for GitHub users. Users can view candidate details such as name, location, avatar, email, and company information. The app provides functionality to save candidates to local storage or skip them and move to the next candidate. The app also allows searching for specific GitHub users by username.
 
-![Screenshot of Application]()
+![Screenshot of Application](/src/assets/images/appScreenshot.jpg)
 
 ---
 

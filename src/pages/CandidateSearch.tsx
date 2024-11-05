@@ -103,14 +103,17 @@ const CandidateSearch = () => {
     if (!currentCandidate || noMoreCandidates) return;
 
     let storedCandidates: Candidate[] = [];
-    const saved = localStorage.getItem("candidates");
+    const saved = localStorage.getItem("potentialCandidates");
     if (saved) {
       storedCandidates = JSON.parse(saved);
     }
 
     // Add the current candidate to local storage
     storedCandidates.push(currentCandidate);
-    localStorage.setItem("candidates", JSON.stringify(storedCandidates));
+    localStorage.setItem(
+      "potentialCandidates",
+      JSON.stringify(storedCandidates)
+    );
 
     // Move to the next candidate
     moveToNext();
