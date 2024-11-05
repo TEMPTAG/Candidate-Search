@@ -2,6 +2,7 @@ import { useState, useEffect, FormEvent } from "react";
 import { searchGithub, searchGithubUser } from "../api/API";
 import CandidateCard from "../components/CandidateCard";
 import type Candidate from "../interfaces/Candidate.interface";
+import loadingGif from "../assets/images/loading.gif";
 
 const CandidateSearch = () => {
   // State to hold the current candidate's details
@@ -31,28 +32,50 @@ const CandidateSearch = () => {
   // State for no more candidates message
   const [noMoreCandidates, setNoMoreCandidates] = useState<boolean>(false);
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   // Fetch candidates from GitHub API on component mount
   useEffect(() => {
     const fetchCandidates = async () => {
       try {
+        setLoading(true);
         const data = await searchGithub();
-        const fetchedCandidates: Candidate[] = data.map((user: any) => ({
-          name: user.name || "No name available",
-          login: user.login,
-          location: user.location || "No location available",
-          avatar_url: user.avatar_url || "No avatar available",
-          email: user.email || "No email available",
-          html_url: user.html_url || "No address available",
-          company: user.company || "No company available",
-          bio: user.bio || "No bio available",
-        }));
+        // const fetchedCandidates: Candidate[] = data.map((user: any) => ({
+        //   name: user.name || "No name available",
+        //   login: user.login,
+        //   location: user.location || "No location available",
+        //   avatar_url: user.avatar_url || "No avatar available",
+        //   email: user.email || "No email available",
+        //   html_url: user.html_url || "No address available",
+        //   company: user.company || "No company available",
+        //   bio: user.bio || "No bio available",
+        // }));
+        const fetchedCandidates: Candidate[] = [];
+        for (const user of data) {
+          const currentUser = await searchGithubUser(user.login);
+          // console.log(currentUser);
+          if (Object.keys(currentUser).length === 0) continue;
+          fetchedCandidates.push({
+            name: currentUser.name || "No name available",
+            login: currentUser.login,
+            location: currentUser.location || "No location available",
+            avatar_url: currentUser.avatar_url || "No avatar available",
+            email: currentUser.email || "No email available",
+            html_url: currentUser.html_url || "No address available",
+            company: currentUser.company || "No company available",
+            bio: currentUser.bio || "No bio available",
+          });
+        }
+
         setCandidates(fetchedCandidates);
 
         if (fetchedCandidates.length > 0) {
           setCurrentCandidate(fetchedCandidates[0]);
         }
         setError(null); // Clear any previous error when successful
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         setError("Error fetching candidates");
       }
     };
@@ -170,11 +193,28 @@ const CandidateSearch = () => {
           skipCandidate={moveToNext}
         />
       ) : (
-        <p>
-          {noMoreCandidates
-            ? "No more candidates available."
-            : "No candidate information to display"}
-        </p>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "2.5rem",
+            textAlign: "center",
+          }}
+        >
+          <p>
+            {noMoreCandidates ? (
+              "No more candidates available."
+            ) : loading ? (
+              <img
+                src={loadingGif}
+                alt="Loading Gif"
+                style={{ width: "50px", height: "50px" }}
+              />
+            ) : (
+              "No candidate information to display"
+            )}
+          </p>
+        </div>
       )}
     </div>
   );
